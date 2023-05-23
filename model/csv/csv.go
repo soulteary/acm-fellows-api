@@ -3,6 +3,7 @@ package csv
 import (
 	"encoding/csv"
 	"os"
+	"sort"
 )
 
 func Save(filename string, names map[string]string) error {
@@ -20,7 +21,15 @@ func Save(filename string, names map[string]string) error {
 		return err
 	}
 
-	for name, year := range names {
+	var keys []string
+	for k := range names {
+		keys = append(keys, k)
+	}
+
+	sort.Strings(keys)
+
+	for _, name := range keys {
+		year := names[name]
 		err := writer.Write([]string{name, year})
 		if err != nil {
 			return err
