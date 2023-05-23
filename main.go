@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/soulteary/acm-fellows-api/model/humanname"
+	"github.com/soulteary/acm-fellows-api/model/csv"
 	"github.com/soulteary/acm-fellows-api/model/network"
 	"github.com/soulteary/acm-fellows-api/model/parse"
 )
@@ -22,8 +22,14 @@ func main() {
 	}
 
 	fmt.Println("Total fellows:", len(fellows))
-	for _, fellow := range fellows {
-		fmt.Println(fellow)
-		fmt.Println(humanname.Parse(fellow.Name))
+
+	names, err := parse.GetNameAndYear(fellows)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	err = csv.Save("acm-fellows.csv", names)
+	if err != nil {
+		log.Fatal(err)
 	}
 }
