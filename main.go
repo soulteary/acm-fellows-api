@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 
+	"github.com/soulteary/acm-fellows-api/model/humanname"
 	"github.com/soulteary/acm-fellows-api/model/network"
 	"github.com/soulteary/acm-fellows-api/model/parse"
 )
@@ -23,5 +24,6 @@ func main() {
 	fmt.Println("Total fellows:", len(fellows))
 	for _, fellow := range fellows {
 		fmt.Println(fellow)
+		fmt.Println(humanname.Parse(fellow.Name))
 	}
 }
