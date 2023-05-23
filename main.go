@@ -17,7 +17,8 @@ type Fellow struct {
 }
 
 func main() {
-	quotePage := "https://awards.acm.org/fellows/award-winners"
+	// origin page addr: https://awards.acm.org/fellows/award-winners
+	quotePage := "https://awards.acm.org/fellows/award-recipients"
 	resp, err := http.Get(quotePage)
 	if err != nil {
 		log.Fatal(err)
